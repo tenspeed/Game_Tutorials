@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1414476618 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/main.cpp
+	<iostream>
+	<string>
+	<random>
+	<ctime>
+
