@@ -112,6 +112,7 @@ class Monster
         // this is a setter function that sets a variable
         // _name is a private variable, but the monster
         // class can set it itself.
+
         void setName(string name)
         {
             _name = name;
@@ -119,6 +120,7 @@ class Monster
 
         // this is a getter function that gets a variable,
         // in this case, the protected variable, _name
+
         string getName(void)
         {
             return _name;
