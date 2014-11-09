@@ -54,43 +54,62 @@ bool GameBoard::win(char symbol, string name)
 {
     if((board[0][0] == symbol) && (board[0][1] == symbol) && (board[0][2] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
     else if((board[1][0] == symbol) && (board[1][1] == symbol) && (board[1][2] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
     else if((board[2][0] == symbol) && (board[2][1] == symbol) && (board[2][2] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
-    else if((board[0][0] == symbol) && (board[1][0] == symbol) && (board[2][0] = symbol))
+    else if((board[0][0] == symbol) && (board[1][0] == symbol) && (board[2][0] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
-    else if((board[0][1] == symbol) && (board[1][1] == symbol) && (board[2][1] = symbol))
+    else if((board[0][1] == symbol) && (board[1][1] == symbol) && (board[2][1] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
-    else if((board[0][2] == symbol) && (board[1][2] == symbol) && (board[2][2] = symbol))
+    else if((board[0][2] == symbol) && (board[1][2] == symbol) && (board[2][2] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
-    else if((board[0][0] == symbol) && (board[1][1] == symbol) && (board[2][2] = symbol))
+    else if((board[0][0] == symbol) && (board[1][1] == symbol) && (board[2][2] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
     }
-    else if((board[0][2] == symbol) && (board[1][1] == symbol) && (board[2][0] = symbol))
+    else if((board[0][2] == symbol) && (board[1][1] == symbol) && (board[2][0] == symbol))
     {
-        cout << name << " wins!" << endl;
+        cout << "\n" << name << " wins!" << endl;
         return true;
+    }
+    else
+    {
+        int count = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (board[i][j] != '_')
+                {
+                    count++;
+                }
+            }
+        }
+        if(count == 9)
+        {
+            cout << "\nIt's a draw!" << endl;
+            return true;
+        }
     }
 
     return false;

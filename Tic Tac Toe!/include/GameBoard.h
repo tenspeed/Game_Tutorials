@@ -14,6 +14,7 @@ class GameBoard
         bool win(char symbol, string name);
 
         char board[3][3];
+        int count;
 
     private:
 

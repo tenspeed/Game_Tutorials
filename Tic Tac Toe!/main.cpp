@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     // declare variables
-    bool isDone = false;
+    bool gameDone = false;
     bool turnDone = false;
     int x;
     int y;
@@ -37,20 +37,14 @@ int main()
     player2.initPlayer();
 
     // main game loop
-    while(isDone != true)
+    while(gameDone != true)
     {
-        // reset the turnDone flag
-        turnDone = false;
-
-        // player 1 turn
-        if(turn == 1)
+        while(turnDone != true)
         {
-            // keep going until player 1 has given valid input
-            while(turnDone != true)
+            tictactoe.printBoard();
+            if (turn % 2 != 0)
             {
-
-                tictactoe.printBoard();
-                cout << player1.getName() << endl;
+                cout << "\n" << player1.getName() << endl;
                 cout << "Enter a x-coordinate: ";
                 cin >> x;
                 cout << "Enter a y-coordinate: ";
@@ -59,37 +53,30 @@ int main()
                 // unless the spot is already taken
                 turnDone = tictactoe.setGamePiece(x, y, player1.getSymbol());
                 // check for a winning condition to end the game
-                isDone = tictactoe.win(player1.getSymbol(), player1.getName());
-
+                gameDone = tictactoe.win(player1.getSymbol(), player1.getName());
+                turn++;
             }
-            // increment turn so next time it will be player 2's turn
-            turn++;
-
-        }
-
-        // player 2 turn
-        else
-        {
-            // keep going until player 2 has given valid input
-            while(turnDone != true)
+            else
             {
-                tictactoe.printBoard();
-                cout << player2.getName() << endl;
+                cout << "\n" << player2.getName() << endl;
                 cout << "Enter a x-coordinate: ";
                 cin >> x;
                 cout << "Enter a y-coordinate: ";
                 cin >> y;
-                // update the game board with player 2's symbol
-                // unless the spot is already taken
+
                 turnDone = tictactoe.setGamePiece(x, y, player2.getSymbol());
-                // check for a winning condition to end the game
-                isDone = tictactoe.win(player2.getSymbol(), player2.getName());
+
+                gameDone = tictactoe.win(player2.getSymbol(), player2.getName());
+                turn++;
             }
 
-            // decrement turn so next time it will be player 1's turn
-            turn--;
         }
+
+            turnDone = false;
+
     }
+
+
     cout << "\n";
     tictactoe.printBoard();
     return 0;
