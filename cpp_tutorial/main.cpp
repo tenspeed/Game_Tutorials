@@ -3,8 +3,79 @@
 #include <random>
 #include <ctime>
 #include <vector>
+#include <list>
 
 using namespace std;
+
+// Exercise 18: Lists!
+
+// In this exercise we learn about lists. Lists are similar to vectors and
+// arrays in that they store collections of data. the benefit of using a list
+// is that you can add or remove items from the list without having to care
+// about where the items are located in the list. this is more difficult to
+// accomplish with an array or a vector. The downside of using a list is that
+// in order to remove specific items, you will have to loop through all or
+// a portion of the list which can be very slow/inefficient, especially if
+// it's a big list. It is much much MUCH faster to use a vector or an array
+// to store data in memory. It's up to you to decide which one you need to use.
+
+int main()
+{
+    // lists are a 'template class' just like vectors. they are
+    // declared the same way as you can see.
+    list<string> shopItemNames;
+
+    // lists have a push_back() method just like vectors do and they
+    // also have a push_front() method that pushes things to the front
+    // of the list.
+    shopItemNames.push_back("Gloves");
+    shopItemNames.push_front("Axes");
+    shopItemNames.push_back("Kittens");
+    shopItemNames.push_back("Swords");
+    shopItemNames.push_back("Cars");
+    shopItemNames.push_back("Kittens");
+
+    // you cannot loop through a list with an integer, i, like you
+    // can with an array or vector, ie: for (int i = 0; i < vector.size(); i++)
+    // you have to create a new thing called an "iterator"
+    list<string>::iterator it;
+
+    for (it = shopItemNames.begin(); it != shopItemNames.end(); it++)
+    {
+        // print out whatever it is pointing at (hint: it is a pointer
+        // to the values in the list shopItemNames).
+        cout << *it << endl;
+    }
+
+    // remove() will remove ALL instances of the parameter you give it
+    // ie: this will remove all Kittens from the list if there are
+    // multiple Kittens.
+   /* shopItemNames.remove("Kittens"); */
+
+   // if you only want to remove one Kitten, this for loop will do the trick.
+   // erase() only erases the current item it is pointing at. once you call
+   // erase() on the first Kitten you encounter, you can use break; to leave
+   // the for loop
+   for (it = shopItemNames.begin(); it != shopItemNames.end(); it++)
+   {
+        if(*it == "Kittens")
+        {
+            it = shopItemNames.erase(it);
+            break;
+        }
+   }
+
+    cout << "\n";
+
+    for (it = shopItemNames.begin(); it != shopItemNames.end(); it++)
+    {
+        // print out whatever it is pointing at (hint: it is a pointer
+        // to the values in the list shopItemNames).
+        cout << *it << endl;
+    }
+
+    return 0;
+}
 
 /*
 
