@@ -2,7 +2,71 @@
 #include <string>
 #include <random>
 #include <ctime>
+#include <vector>
 
+using namespace std;
+
+/*
+
+int main()
+{
+    // vectors are like arrays without a fixed index size. the size
+    // of a vector can be changed at any time while the program is
+    // running, unlike an array. vectors are actually classes.
+    // the "<string>" part is called a 'template'. classes which
+    // use <> are called 'template classes' it's basically just
+    // telling the compiler what kind of datatype this vector
+    // will be dealing with.
+    vector<string> itemNames;
+
+    // every time you call push_back() on a vector, it pushes
+    // the variable you give it, in this case a string, into the
+    // vector and increments the vector's size automatically. this
+    // is how you add items to your vector.
+    itemNames.push_back("Gloves");
+    itemNames.push_back("Hats");
+    itemNames.push_back("Axes");
+    itemNames.push_back("Rocks");
+
+    for (int i = 0; i < itemNames.size(); i++)
+    {
+        cout << itemNames[i] << endl;
+    }
+
+    // to remove an item from a vector, use pop_back(). by default,
+    // pop_back() removes the last item in the vector.
+    itemNames.pop_back();
+
+    // here is a trick to remove an item from the middle of a vector:
+    // 1) overwrite the item in the middle of the vector with the last
+    //    item in the vector
+    // 2) delete the last item in the vector to remove the duplicate.
+
+    // back() grabs the very last item at the back of the vector
+    // this method works well for removing items at any arbitrary point
+    // in the vecor, but it shuffles the order of the items in the
+    // process. if you need the order to remain the same, then you
+    // need to use a list (see exercise 18)
+    itemNames[1] = itemNames.back();
+    itemNames.pop_back();
+
+    for (int i = 0; i < itemNames.size(); i++)
+    {
+        cout << itemNames[i] << endl;
+    }
+
+    // print out the size of the vector
+    cout << itemNames.size() << endl;
+
+
+
+    return 0;
+}
+
+*/
+
+/*
+Exercise 16
 #include "Monster.h"
 
 using namespace std;
@@ -21,6 +85,9 @@ int main()
 
     return 0;
 }
+
+*/
+
 /*
 
 Exercise 15
