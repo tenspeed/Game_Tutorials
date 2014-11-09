@@ -4,8 +4,253 @@
 #include <ctime>
 #include <vector>
 #include <list>
+#include <cstdlib>
+#include <fstream>
+//#include "Item.h"
+//#include "Shop.h"
+//#include "Player.h"
 
 using namespace std;
+
+/*
+Exercise 19: File IO and Advanced Input!
+
+int main()
+{
+
+    ofstream outputfile;
+    ifstream inputfile;
+    /*
+    // open the file and default to write
+    outputfile.open("myfile.txt");
+
+    // check to make sure ofstream opened the file correctly
+    if (outputfile.fail())
+    {
+        // "this file does not exist", or whatever
+        perror("myfile.txt");
+        return 1;
+    }
+    // write "Hello World" to the file
+    outputfile << "Hello World\n";
+    // close the file
+    outputfile.close();
+
+    */
+
+    inputfile.open("myfile.txt");
+    if (inputfile.fail())
+    {
+        perror("myfile.txt");
+        return 1;
+    }
+
+    string input;
+    while(getline(inputfile,input))
+    {
+        cout << input << endl;
+    }
+
+    cout << input;
+
+    // how to prevent bad input from messing up your program:
+
+    while(true)
+    {
+        int a;
+        // cin is expecting 'a' to be an integer. if the user types in
+        // a char or a string instead, this will really mess up your
+        // program. to prevent this, we check first whether cin has
+        // received an integer or not. cin >> a will actually return a
+        // a boolean value (true or false) depending on the input it
+        // receives. if 'a' is an integer, it will return true. if
+        // 'a' is something else, it will return false. our if-statement
+        // below checks to see if cin got an integer, and if not, prints
+        // an error message instead of trying to print out 'a'.
+        if (!(cin >> a))
+        {
+            cout << "THAT IS BAD";
+            system("PAUSE");
+            // cin.clear() : clear the input stream
+            cin.clear();
+            // cin.ignore (#of characters to ignore, ignore everything up to the newline);
+            cin.ignore(9999, '\n');
+        }
+        else
+        {
+            cout << a;
+        }
+    }
+
+    system("PAUSE");
+    return 0;
+}
+
+*/
+/*
+
+Exercise 18.5: Item Shop Game (Doesn't quite work)
+
+void initShops(list<Shop> &shops);
+void initPlayer(Player &player);
+void pickShop(list<Shop> &shops);
+void enterShop(Player &player, Shop &shop);
+
+int main()
+{
+
+    list<Shop> shops;
+    list<Shop>::iterator lit;
+    Player player;
+    string shopName;
+
+    // Initialization
+    initPlayer(player);
+    initShops(shops);
+
+    // Tells us when the game is over
+    bool isDone = false;
+
+    cout << "*** Welcome to the item shop! ***\n";
+
+    // Game loop
+    while(isDone == false)
+    {
+        cout << "Shops\n";
+        int i = 1;
+        for (lit = shops.begin(); lit != shops.end(); lit++)
+        {
+            cout << i << ". " << (*lit).getName() << endl;
+            i++;
+        }
+        cout << "What shop would you like to enter?";
+
+        // getline(cin, shopName) is going to capture the entire string
+        // of your user's input. if you just use cin, it will only grab
+        // the first string and then stop when it encounters the blank
+        // space character. for example, if you type "The Blacksmith"
+        // cin will only grab "The". getline(cin, shopName) will grab
+        // "The Blacksmith". In order for this to fully work though,
+        // you will want to call cin.ignore(64, '\n') and cin.clear()
+        // to make sure that any previous input does not get grabbed
+        // by getline(). (cin does not get automatically cleared from
+        // the last time you called it).
+
+        getline(cin, shopName);
+
+        cout << "You inputted: " << shopName << endl;
+
+        bool validShop = false;
+
+        for (lit = shops.begin(); lit != shops.end(); lit++)
+        {
+           if ((*lit).getName() == shopName)
+           {
+                enterShop(player, (*lit));
+                validShop = true;
+           }
+        }
+
+        if (validShop == false)
+        {
+            cout << "Invalid Shop!\n";
+        }
+    }
+}
+
+void initShops(list<Shop> &shops)
+{
+    shops.push_back(Shop("Bill's Leather Shop", 500));
+    shops.back().addItem(Item("Leather Boots", 50));
+    shops.back().addItem(Item("Leather Hat", 50));
+    shops.back().addItem(Item("Leather Gloves", 50));
+    shops.back().addItem(Item("Leather Gauntlets", 50));
+    shops.back().addItem(Item("Leather Chestpiece", 100));
+
+    shops.push_back(Shop("The Blacksmith", 1500));
+    shops.back().addItem(Item("Iron Boots", 100));
+    shops.back().addItem(Item("Iron Hat", 100));
+    shops.back().addItem(Item("Iron Gloves", 100));
+    shops.back().addItem(Item("Iron Gauntlets", 100));
+    shops.back().addItem(Item("Iron Chestpiece", 200));
+    shops.back().addItem(Item("Iron Sword", 150));
+    shops.back().addItem(Item("Iron Shield", 150));
+
+
+    shops.push_back(Shop("Beverly's Fruity Fruit Shop", 200));
+    shops.back().addItem(Item("Grapes", 5));
+    shops.back().addItem(Item("Apple", 5));
+    shops.back().addItem(Item("Orange", 5));
+    shops.back().addItem(Item("Watermellon", 10));
+    shops.back().addItem(Item("Tomato", 3));
+}
+
+void initPlayer(Player &player)
+{
+    cout << "Enter thy name sir knight: ";
+    string name;
+    getline(cin, name);
+    player.init(name, 100);
+    player.addItem(Item("Bronze Sword", 5));
+}
+
+void enterShop(Player &player, Shop &shop)
+{
+    bool isDone = false;
+    char input;
+    string itemName;
+    Item newItem("NOITEM", 0);
+
+    while (isDone == false)
+    {
+        shop.printShop();
+        player.printInventory();
+
+        cout << "Would you like to buy or sell? Q to quit. (B/S): ";
+        cin >> input;
+        cin.ignore(64, '\n');
+        cin.clear();
+
+        if (input == 'Q' || input == 'q')
+        {
+            return;
+        }
+
+        if (input == 'B' || input == 'b')
+        {
+            // buy
+            cout << "Enter the item you wish to buy: ";
+            getline(cin, itemName);
+
+            if (shop.purchaseItem(itemName, newItem))
+            {
+                player.addItem(newItem);
+            }
+            else
+            {
+                cout << "That is an invalid item\n";
+            }
+        }
+        else
+        {
+            // sell
+            cout << "Enter the item you wish to sell: ";
+            getline(cin, itemName);
+
+            if (player.removeItem(itemName, newItem) == true)
+            {
+                shop.addItem(newItem);
+            }
+            else
+            {
+                cout << "That is an invalid item\n";
+            }
+        }
+    }
+}
+
+*/
+/*
 
 // Exercise 18: Lists!
 
@@ -50,7 +295,7 @@ int main()
     // remove() will remove ALL instances of the parameter you give it
     // ie: this will remove all Kittens from the list if there are
     // multiple Kittens.
-   /* shopItemNames.remove("Kittens"); */
+   // shopItemNames.remove("Kittens");
 
    // if you only want to remove one Kitten, this for loop will do the trick.
    // erase() only erases the current item it is pointing at. once you call
@@ -77,6 +322,7 @@ int main()
     return 0;
 }
 
+*/
 /*
 
 int main()

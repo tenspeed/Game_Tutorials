@@ -1,9 +1,15 @@
 # depslib dependency file v1.0
-1414476618 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/main.cpp
+1415573718 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/main.cpp
 	<iostream>
 	<string>
 	<random>
 	<ctime>
+	<vector>
+	<list>
+	"Item.h"
+	"Shop.h"
+	"Player.h"
+	"Monster.h"
 
 1414975147 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/src/Monster.cpp
 	"Monster.h"
@@ -11,4 +17,28 @@
 
 1414974988 /home/tenspeed/github/Game_Tutorials/cpp_tutorial/include/Monster.h
 	<string>
+
+1415557554 /home/tenspeed/github/Game_Tutorials/cpp_tutorial/include/Item.h
+	<string>
+
+1415567323 /home/tenspeed/github/Game_Tutorials/cpp_tutorial/include/Shop.h
+	<string>
+	<list>
+	"Item.h"
+
+1415567273 /home/tenspeed/github/Game_Tutorials/cpp_tutorial/include/Player.h
+	<string>
+	<list>
+	<iostream>
+	"Item.h"
+
+1415557457 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/src/Item.cpp
+	"Item.h"
+
+1415567846 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/src/Player.cpp
+	"Player.h"
+
+1415567912 source:/home/tenspeed/github/Game_Tutorials/cpp_tutorial/src/Shop.cpp
+	"Shop.h"
+	<iostream>
 
